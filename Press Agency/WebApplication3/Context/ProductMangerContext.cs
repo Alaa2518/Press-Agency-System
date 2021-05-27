@@ -5,17 +5,25 @@ using System.Web;
 using System.Data.Entity;
 
 using System.Data.Entity.ModelConfiguration.Conventions;
+using WebApplication3.Models;
 
 namespace WebApplication3.Context
 {
     public class ProductMangerContext:DbContext
     {
-        public ProductMangerContext() : base("ProductMangerContext")
+        public ProductMangerContext() : base("DefaultConnection")
         {
 
         }
+        
 
-       
+        public DbSet<Admin> admins { get; set; }
+        public DbSet<Editor> editors { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<Article> articles { get; set; }
+        public DbSet<Photo> photos { get; set; }
+        public DbSet<Questions> questions { get; set; }
+        public DbSet<Saving> saving { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

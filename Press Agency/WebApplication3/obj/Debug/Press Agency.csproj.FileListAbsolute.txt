@@ -246,9 +246,10 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Antlr3.Runtime.pdb
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csprojAssemblyReference.cache
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.first.resources
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.GenerateResource.cache
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.CoreCompileInputs.cache
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.CopyComplete
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.pdb
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.FirstCreateDB.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.GenerateResource.cache
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.FirstCreateDB1.resources
