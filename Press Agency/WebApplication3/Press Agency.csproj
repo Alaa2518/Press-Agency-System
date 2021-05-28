@@ -129,26 +129,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\ProductMangerContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105271646098_FirstCreateDB.cs" />
-    <Compile Include="Migrations\202105271646098_FirstCreateDB.designer.cs">
-      <DependentUpon>202105271646098_FirstCreateDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105271647497_FirstCreateDB1.cs" />
-    <Compile Include="Migrations\202105271647497_FirstCreateDB1.designer.cs">
-      <DependentUpon>202105271647497_FirstCreateDB1.cs</DependentUpon>
+    <Compile Include="Migrations\202105281845529_firstCreateDatabase.cs" />
+    <Compile Include="Migrations\202105281845529_firstCreateDatabase.designer.cs">
+      <DependentUpon>202105281845529_firstCreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\Editor.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Questions.cs" />
     <Compile Include="Models\Saving.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -184,9 +179,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_WallLayout.cshtml" />
+    <Content Include="Views\Wall\Index.cshtml" />
+    <Content Include="Views\Wall\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -205,11 +200,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105271646098_FirstCreateDB.resx">
-      <DependentUpon>202105271646098_FirstCreateDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105271647497_FirstCreateDB1.resx">
-      <DependentUpon>202105271647497_FirstCreateDB1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105281845529_firstCreateDatabase.resx">
+      <DependentUpon>202105281845529_firstCreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

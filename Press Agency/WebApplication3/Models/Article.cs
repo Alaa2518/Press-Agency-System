@@ -33,7 +33,7 @@ namespace WebApplication3.Models
         public int ImageId { get; set; }
 
         
-        public virtual List<Editor> Editors { get; set; }
+        public virtual List<Person> People { get; set; }
         public int EditorId { get; set; }
 
 

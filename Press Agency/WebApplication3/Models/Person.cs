@@ -31,7 +31,8 @@ namespace WebApplication3.Models
 
         [Required(ErrorMessage = "Enter your Role")]
         [Display(Name = "RleUser")]
-        public int RoleUser { get; set; }
+        public virtual IEnumerable<UserRole> UserRoles { get; set; }
+        public int RoleUserID { get; set; }
 
         [Required(ErrorMessage = "Enter Password")]
         [Display(Name= "Password")]

@@ -15,11 +15,11 @@ namespace WebApplication3.Context
         {
 
         }
-        
 
-        public DbSet<Admin> admins { get; set; }
-        public DbSet<Editor> editors { get; set; }
-        public DbSet<User> users { get; set; }
+
+        
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Person> People { get; set; }
         public DbSet<Article> articles { get; set; }
         public DbSet<Photo> photos { get; set; }
         public DbSet<Questions> questions { get; set; }

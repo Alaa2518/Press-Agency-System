@@ -13,7 +13,7 @@ namespace WebApplication3.Models
         public virtual List<Article> Articles { get; set; }
         public int PostId { get; set; }
         
-        public virtual List<User> Users { get; set; }
+        public virtual List<Person> People { get; set; }
         public int userId { get; set; }
     }
 }
