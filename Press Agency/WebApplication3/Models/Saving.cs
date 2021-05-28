@@ -7,8 +7,8 @@ namespace WebApplication3.Models
 {
     public class Saving
     {
-        public int ID { get; set; }
 
+        public int ID { get; set; }
         
         public virtual List<Article> Articles { get; set; }
         public int PostId { get; set; }

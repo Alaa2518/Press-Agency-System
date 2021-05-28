@@ -16,12 +16,12 @@
                         ArticleBody = c.String(nullable: false),
                         CreationDate = c.String(),
                         ArticleType = c.String(nullable: false),
-                        NumberOfViewers = c.Int(nullable: false),
-                        NumberOfLikes = c.Int(nullable: false),
-                        NumberOfDislikes = c.Int(nullable: false),
-                        IfAproveed = c.Boolean(nullable: false),
-                        ImageId = c.Int(nullable: false),
-                        EditorId = c.Int(nullable: false),
+                        NumberOfViewers = c.Int(nullable: true),
+                        NumberOfLikes = c.Int(nullable: true),
+                        NumberOfDislikes = c.Int(nullable: true),
+                        IfAproveed = c.Boolean(nullable: true),
+                        ImageId = c.Int(nullable: true),
+                        EditorId = c.Int(nullable: true),
                         Saving_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -37,12 +37,12 @@
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
                         Email = c.String(nullable: false),
-                        PhoneNumber = c.String(nullable: false),
+                        PhoneNumber = c.String(nullable: true),
                         RoleUserID = c.Int(nullable: false),
                         Password = c.String(nullable: false),
-                        photoID = c.Int(nullable: false),
-                        Article_Id = c.Int(),
-                        Saving_ID = c.Int(),
+                        photoID = c.Int(nullable: true),
+                        Article_Id = c.Int(nullable: true),
+                        Saving_ID = c.Int(nullable: true),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Article", t => t.Article_Id)
@@ -73,8 +73,8 @@
                         ID = c.Int(nullable: false, identity: true),
                         Ask = c.String(),
                         Answer = c.String(),
-                        EditorAnswerId = c.Int(nullable: false),
-                        IsAnswer = c.Boolean(nullable: false),
+                        EditorAnswerId = c.Int(nullable: true),
+                        IsAnswer = c.Boolean(nullable: true),
                     })
                 .PrimaryKey(t => t.ID);
             

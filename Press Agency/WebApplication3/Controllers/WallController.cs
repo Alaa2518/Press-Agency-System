@@ -16,10 +16,10 @@ namespace WebApplication3.Controllers
         // GET: Wall
         public ActionResult Index()
         {
-          
-            return View();
+            List<Article> Articles = db.articles.ToList();
+            return View(Articles);
         }
-
+        
         public ActionResult Login()
         {
 
@@ -35,7 +35,7 @@ namespace WebApplication3.Controllers
             {
                 using (ProductMangerContext db = new ProductMangerContext())
                 {
-                    var Use = db.People.Where(a => a.UserName.Equals(users.UserName) && a.Password.Equals(users.Password) && a.RoleUserID.Equals(users.RoleUserID)).FirstOrDefault();
+                    var Use = db.People.Where(a => a.UserName.Equals(users.UserName) && a.Password.Equals(users.Password) ).FirstOrDefault();
 
                     if (Use != null)
                     {
@@ -50,7 +50,7 @@ namespace WebApplication3.Controllers
                         else if (Use.RoleUserID == 3 )
                             return RedirectToAction("Wall", "Logedin");
                         else
-                            return View();
+                            return View(users);
                     }
                     
                         
@@ -62,6 +62,26 @@ namespace WebApplication3.Controllers
                 }
             }
             return View(users);
+        }
+
+        
+        
+        public ActionResult Register()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(Person user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.People.Add(user);
+                db.SaveChanges();
+            }
+            return View(user);
         }
     }
 }

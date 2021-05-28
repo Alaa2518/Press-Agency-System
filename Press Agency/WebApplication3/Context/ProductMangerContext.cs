@@ -25,6 +25,8 @@ namespace WebApplication3.Context
         public DbSet<Questions> questions { get; set; }
         public DbSet<Saving> saving { get; set; }
 
+       
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);

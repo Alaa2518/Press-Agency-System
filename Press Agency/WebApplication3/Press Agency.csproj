@@ -128,7 +128,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\ProductMangerContext.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -136,6 +135,14 @@
     <Compile Include="Migrations\202105281845529_firstCreateDatabase.cs" />
     <Compile Include="Migrations\202105281845529_firstCreateDatabase.designer.cs">
       <DependentUpon>202105281845529_firstCreateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105282008090_firstCreateDatabase1.cs" />
+    <Compile Include="Migrations\202105282008090_firstCreateDatabase1.designer.cs">
+      <DependentUpon>202105282008090_firstCreateDatabase1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105282145048_firstCreateDatabase2.cs" />
+    <Compile Include="Migrations\202105282145048_firstCreateDatabase2.designer.cs">
+      <DependentUpon>202105282145048_firstCreateDatabase2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -182,6 +189,7 @@
     <Content Include="Views\Shared\_WallLayout.cshtml" />
     <Content Include="Views\Wall\Index.cshtml" />
     <Content Include="Views\Wall\Login.cshtml" />
+    <Content Include="Views\Wall\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -202,6 +210,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105281845529_firstCreateDatabase.resx">
       <DependentUpon>202105281845529_firstCreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105282008090_firstCreateDatabase1.resx">
+      <DependentUpon>202105282008090_firstCreateDatabase1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105282145048_firstCreateDatabase2.resx">
+      <DependentUpon>202105282145048_firstCreateDatabase2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
