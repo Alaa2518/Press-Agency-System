@@ -128,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\ProductMangerContext.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FactoryController.cs" />
     <Compile Include="Controllers\WallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +145,26 @@
     <Compile Include="Migrations\202105282145048_firstCreateDatabase2.cs" />
     <Compile Include="Migrations\202105282145048_firstCreateDatabase2.designer.cs">
       <DependentUpon>202105282145048_firstCreateDatabase2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291107396_firstCreataeDatabase.cs" />
+    <Compile Include="Migrations\202105291107396_firstCreataeDatabase.designer.cs">
+      <DependentUpon>202105291107396_firstCreataeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291113586_firstCreataeDatabase1.cs" />
+    <Compile Include="Migrations\202105291113586_firstCreataeDatabase1.designer.cs">
+      <DependentUpon>202105291113586_firstCreataeDatabase1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291124420_firstCreataeDatabase2.cs" />
+    <Compile Include="Migrations\202105291124420_firstCreataeDatabase2.designer.cs">
+      <DependentUpon>202105291124420_firstCreataeDatabase2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291146371_firstCreataeDatabase3.cs" />
+    <Compile Include="Migrations\202105291146371_firstCreataeDatabase3.designer.cs">
+      <DependentUpon>202105291146371_firstCreataeDatabase3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291148117_firstCreataeDatabase4.cs" />
+    <Compile Include="Migrations\202105291148117_firstCreataeDatabase4.designer.cs">
+      <DependentUpon>202105291148117_firstCreataeDatabase4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -190,6 +212,8 @@
     <Content Include="Views\Wall\Index.cshtml" />
     <Content Include="Views\Wall\Login.cshtml" />
     <Content Include="Views\Wall\Register.cshtml" />
+    <Content Include="Views\Factory\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -216,6 +240,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105282145048_firstCreateDatabase2.resx">
       <DependentUpon>202105282145048_firstCreateDatabase2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291107396_firstCreataeDatabase.resx">
+      <DependentUpon>202105291107396_firstCreataeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291113586_firstCreataeDatabase1.resx">
+      <DependentUpon>202105291113586_firstCreataeDatabase1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291124420_firstCreataeDatabase2.resx">
+      <DependentUpon>202105291124420_firstCreataeDatabase2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291146371_firstCreataeDatabase3.resx">
+      <DependentUpon>202105291146371_firstCreataeDatabase3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291148117_firstCreataeDatabase4.resx">
+      <DependentUpon>202105291148117_firstCreataeDatabase4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

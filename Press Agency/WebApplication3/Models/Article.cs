@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,7 +18,7 @@ namespace WebApplication3.Models
         [Required(ErrorMessage = "Enter Body")]
         [Display(Name = "Body")]
         public string ArticleBody { get; set; }
-
+        [DataType(DataType.DateTime)]
         public string CreationDate { get; set; }
 
         [Required(ErrorMessage = "Enter type")]
@@ -27,15 +28,12 @@ namespace WebApplication3.Models
         public int NumberOfLikes { get; set; }
         public int NumberOfDislikes { get; set; }
         public bool IfAproveed { get; set; }
-        
-        public virtual List<Photo> Photos { get; set; }
-        
-        public int ImageId { get; set; }
 
-        
-        public virtual List<Person> People { get; set; }
+
+        //[ForeignKey("Peroson")]
+        public virtual IEnumerable<Photo> Images { get; set; }
+        public virtual IEnumerable<Person> Person { get; set; }
         public int EditorId { get; set; }
-
 
 
 

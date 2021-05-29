@@ -35,19 +35,21 @@ namespace WebApplication3.Controllers
             {
                 using (ProductMangerContext db = new ProductMangerContext())
                 {
-                    var Use = db.People.Where(a => a.UserName.Equals(users.UserName) && a.Password.Equals(users.Password) ).FirstOrDefault();
-
+                    var Use = db.People.Where(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password) ).FirstOrDefault();
+                    
                     if (Use != null)
                     {
                         Session["UserID"] = Use.Id.ToString();
-                        Session["UserName"] = Use.UserName.ToString();
+                        Session["UserName"] = Use.Email.ToString();
                         Session["UserRole"] = Use.RoleUserID.ToString();
+                        
                         if (Use.RoleUserID == 1)
                             return RedirectToAction("Dashboard", "Index");
-                        
+                            
+
                         else if (Use.RoleUserID == 2)
-                            return RedirectToAction("Facory", "Index");
-                        else if (Use.RoleUserID == 3 )
+                            return RedirectToAction("Factory", "Index");
+                        else if (Use.RoleUserID == 3)
                             return RedirectToAction("Wall", "Logedin");
                         else
                             return View(users);
@@ -68,18 +70,23 @@ namespace WebApplication3.Controllers
         
         public ActionResult Register()
         {
-
-            return View();
+            Person user = new Person
+            {
+                UserRole = db.UserRoles.ToList()
+            };
+            return View(user);
+            
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Register(Person user)
         {
             if (ModelState.IsValid)
             {
                 db.People.Add(user);
                 db.SaveChanges();
+                
             }
             return View(user);
         }

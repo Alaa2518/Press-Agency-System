@@ -37,7 +37,7 @@
             @Html.DisplayNameFor(model => model.IfAproveed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImageId)
+            @Html.DisplayNameFor(model => model.Images)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EditorId)
@@ -72,7 +72,7 @@
             @Html.DisplayFor(modelItem => item.IfAproveed)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageId)
+            @Html.DisplayFor(modelItem => item.Images.ToList().Where(x => x.AritclesID == item.Id))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EditorId)
