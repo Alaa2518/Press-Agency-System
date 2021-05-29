@@ -173,6 +173,7 @@
     <Compile Include="Models\Questions.cs" />
     <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\UserRole.cs" />
+    <Compile Include="Models\ViewModels\PersonRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,7 @@ namespace WebApplication3.Models
         public string ArticleTitle { get; set; }
 
         [Required(ErrorMessage = "Enter Body")]
-        [Display(Name = "Body")]
+        [Display(Name = "Article")]
         public string ArticleBody { get; set; }
         [DataType(DataType.DateTime)]
         public string CreationDate { get; set; }

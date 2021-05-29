@@ -11,15 +11,15 @@ namespace WebApplication3.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Enter UserName")]
-        [Display(Name = "UserName")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Enter first Name")]
-        [Display(Name = "FName")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Enter Last Name")]
-        [Display(Name = "LName")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Enter Email")]
@@ -28,15 +28,14 @@ namespace WebApplication3.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Enter Phone Number")]
-        [Display(Name = "PhoneNumber")]
+        [Display(Name = "Phone Number")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "Enter your Role")]
-        [Display(Name = "RleUser")]
-        //[ForeignKey("UserRole")]
-        
+       
         public virtual IEnumerable<UserRole> UserRole { get; set; }
+        [Required(ErrorMessage = "Enter your Role")]
+        [Display(Name = "User type")]
         public int RoleUserID { get; set; }
 
         [Required(ErrorMessage = "Enter Password")]
@@ -44,12 +43,7 @@ namespace WebApplication3.Models
         [Display(Name= "Password")]
         public string Password { get; set; }
 
-        
-
-
-       
         [DataType(DataType.ImageUrl)]
-        
         public string Image { get; set; }
 
 

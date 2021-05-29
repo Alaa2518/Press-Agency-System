@@ -4,8 +4,10 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using WebApplication3.Context;
 using WebApplication3.Models;
+using WebApplication3.Models.ViewModels;
 
 namespace WebApplication3.Controllers
 {
@@ -33,10 +35,9 @@ namespace WebApplication3.Controllers
              
             if (ModelState.IsValid)
             {
-                using (ProductMangerContext db = new ProductMangerContext())
-                {
-                    var Use = db.People.Where(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password) ).FirstOrDefault();
-                    
+                
+                 var Use = db.People.Where(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password) ).FirstOrDefault();
+           
                     if (Use != null)
                     {
                         Session["UserID"] = Use.Id.ToString();
@@ -44,24 +45,16 @@ namespace WebApplication3.Controllers
                         Session["UserRole"] = Use.RoleUserID.ToString();
                         
                         if (Use.RoleUserID == 1)
-                            return RedirectToAction("Dashboard", "Index");
-                            
-
+                            return RedirectToAction( "Index", "Dashboard");
                         else if (Use.RoleUserID == 2)
-                            return RedirectToAction("Factory", "Index");
+                            return RedirectToAction( "Index", "Factory");
                         else if (Use.RoleUserID == 3)
-                            return RedirectToAction("Wall", "Logedin");
+                            return RedirectToAction( "Logedin", "Wall");
                         else
                             return View(users);
                     }
-                    
-                        
-                   
-                        
 
-                   
-
-                }
+                return RedirectToAction("Index", "Wall");
             }
             return View(users);
         }
@@ -70,25 +63,50 @@ namespace WebApplication3.Controllers
         
         public ActionResult Register()
         {
-            Person user = new Person
+            PersonRoleViewModel Users = new PersonRoleViewModel
             {
-                UserRole = db.UserRoles.ToList()
+                userRoles = db.UserRoles.ToList().Where(x => x.Id != 1)
             };
-            return View(user);
+            return View(Users);
             
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Register(Person user)
+        [ValidateAntiForgeryToken]
+       
+        public ActionResult Register(PersonRoleViewModel Users, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.People.Add(user);
+                if (file != null)
+                {
+                    string pic = System.IO.Path.GetFileName(file.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/images/profiles/"), pic);
+
+                    file.SaveAs(path);
+                    Users.Person.Image = pic;
+                    
+                }
+                db.People.Add(Users.Person);
                 db.SaveChanges();
+                if(Users.Person.RoleUserID == 3)
+                {
+                    return RedirectToAction("Index");
+                }
+                else if (Users.Person.RoleUserID == 2)
+                {
+                    return RedirectToAction("Index", "Factory");
+                }
                 
+
             }
-            return View(user);
+            
+          
+            IEnumerable<UserRole> department = db.UserRoles.ToList().Where(x =>x.Id != 1 ) ;
+            Users.userRoles = department;
+            return View(Users);
         }
+
+       
     }
 }
