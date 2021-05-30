@@ -29,7 +29,7 @@ namespace WebApplication3.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Person users)
+        public ActionResult Login(UserLongin users)
         {
             
              
@@ -50,11 +50,11 @@ namespace WebApplication3.Controllers
                             return RedirectToAction( "Index", "Factory");
                         else if (Use.RoleUserID == 3)
                             return RedirectToAction( "Logedin", "Wall");
-                        else
+                        else 
                             return View(users);
                     }
+                return View(users);
 
-                return RedirectToAction("Index", "Wall");
             }
             return View(users);
         }

@@ -166,6 +166,10 @@
     <Compile Include="Migrations\202105291148117_firstCreataeDatabase4.designer.cs">
       <DependentUpon>202105291148117_firstCreataeDatabase4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105300638365_Removesavingid.cs" />
+    <Compile Include="Migrations\202105300638365_Removesavingid.designer.cs">
+      <DependentUpon>202105300638365_Removesavingid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Person.cs" />
@@ -174,6 +178,7 @@
     <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\ViewModels\PersonRoleViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserLongin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105291148117_firstCreataeDatabase4.resx">
       <DependentUpon>202105291148117_firstCreataeDatabase4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105300638365_Removesavingid.resx">
+      <DependentUpon>202105300638365_Removesavingid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -259,3 +259,4 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreataeDatabase2.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreataeDatabase3.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreataeDatabase4.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.Removesavingid.resources

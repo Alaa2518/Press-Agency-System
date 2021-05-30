@@ -24,13 +24,22 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
-
+                
             </form>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Wall")</li>
                     <li>@Html.ActionLink("Register", "Register", "Wall")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Wall")</li>
+                    @if (Session["UserID"] == null)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Wall")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Logout", "Login", "Wall")</li>
+                        Session["UserID"] = null ;
+                    }
+
 
                 </ul>
             </div>
