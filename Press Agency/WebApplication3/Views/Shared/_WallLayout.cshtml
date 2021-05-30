@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Press Agendy System</title>
     @Styles.Render("~/Content/css")
+     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -29,15 +30,16 @@
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Wall")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Wall")</li>
+
                     @if (Session["UserID"] == null)
                     {
+                        <li>@Html.ActionLink("Register", "Register", "Wall")</li>
                         <li>@Html.ActionLink("Login", "Login", "Wall")</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Logout", "Login", "Wall")</li>
-                        Session["UserID"] = null ;
+                        Session["UserID"] = null;
                     }
 
 

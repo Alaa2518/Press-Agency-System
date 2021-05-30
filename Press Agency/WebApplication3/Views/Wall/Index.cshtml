@@ -3,87 +3,45 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_WallLayout.cshtml";
+
 }
 
-<h2>Index</h2>
+    
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ArticleTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArticleBody)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArticleType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfViewers)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfLikes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfDislikes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IfAproveed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Images)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EditorId)
-        </th>
-        <th></th>
-    </tr>
+<div class="container " style="border:2px solid #808080;min-height:350px; padding:5px 35px">
+    @foreach (var item in Model)
+    {
+        <div class="row justify-content-center">
+            <div class="row ">
+                <p class="col-lg-2 lift">@item.ArticleType</p>
+                <p class="col-lg-2 right">@item.CreationDate</p>
+            </div>
+            <div class="row justify-content-center border ">
+                <h2 class="col-lg-12 ">@item.ArticleTitle</h2>
+            </div>
+            <div class="row justify-content-around border" style="min-height:300px; ">
+                <div class="col-lg-12">
+                    @item.ArticleBody
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArticleTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArticleBody)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArticleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfViewers)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfLikes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfDislikes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IfAproveed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Images.ToList().Where(x => x.AritclesID == item.Id))
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EditorId)
-        </td>
-        <td>
-            @Html.ActionLink("Save", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            
-            
-        </td>
-    </tr>
-}
 
-</table>
+            </div>
+            <div class="row justify-content-between border ">
+                <div class="col-lg-2" style="max-width:100px">
+                    <i class="fa fa-eye"></i> @item.NumberOfViewers
+                </div>
+                <div class="col-lg-2" style="max-width:100px">
+                    <i class="fa fa-thumbs-down"></i> @item.NumberOfLikes
+                </div>
+                <div class="col-lg-2" style="max-width:100px">
+                    <i class="fa fa-thumbs-up" ></i> @item.NumberOfDislikes 
+                </div>
+
+
+            </div>
+
+        </div>
+    }
+</div>
+
+

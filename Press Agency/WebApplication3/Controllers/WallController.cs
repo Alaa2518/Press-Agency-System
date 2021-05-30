@@ -18,7 +18,8 @@ namespace WebApplication3.Controllers
         // GET: Wall
         public ActionResult Index()
         {
-            List<Article> Articles = db.articles.ToList();
+            IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true);
+             
             return View(Articles);
         }
         
