@@ -6,36 +6,64 @@
 
 }
 
-    
 
-<div class="container " style="border:2px solid #808080;min-height:350px; padding:5px 35px">
+<div class="container " style="border:2px solid #808080;min-height:350px; padding:10px 35px;max-width:90%;border-radius:2px;">
     @foreach (var item in Model)
     {
         <div class="row justify-content-center">
             <div class="row ">
-                <p class="col-lg-2 lift">@item.ArticleType</p>
-                <p class="col-lg-2 right">@item.CreationDate</p>
+                <p class="col-lg-9 col-sm-4 lift">@item.ArticleType</p>
+                <p class="col-lg-3 col-sm-4 right">Created in @item.CreationDate</p>
             </div>
-            <div class="row justify-content-center border ">
+            <div class="row justify-content-center ">
                 <h2 class="col-lg-12 ">@item.ArticleTitle</h2>
             </div>
-            <div class="row justify-content-around border" style="min-height:300px; ">
+
+            @if (item.Images != null)
+            {
+
+                <div class="row justify-content-between border border-secondary">
+                    @foreach (var image in item.Images)
+                    {
+                        <img src="~/images/profiles/@image.Path" class="rounded" alt="">
+                    }
+
+                </div>
+            }
+            <div class="row justify-content-around overflow-hidden " style=" min-height:250px; ">
                 <div class="col-lg-12">
+
                     @item.ArticleBody
+
+
                 </div>
 
 
+
             </div>
-            <div class="row justify-content-between border ">
+            <div class="row  justify-content-between border border-secondary ">
                 <div class="col-lg-2" style="max-width:100px">
                     <i class="fa fa-eye"></i> @item.NumberOfViewers
                 </div>
                 <div class="col-lg-2" style="max-width:100px">
-                    <i class="fa fa-thumbs-down"></i> @item.NumberOfLikes
+                    @item.NumberOfDislikes
+                    @Html.ActionLink(" ", "DisLike", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary col-md-4 fa fa-thumbs-down fs-2" })
+
                 </div>
                 <div class="col-lg-2" style="max-width:100px">
-                    <i class="fa fa-thumbs-up" ></i> @item.NumberOfDislikes 
+                    @item.NumberOfLikes
+                    @Html.ActionLink(" ", "Like", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary col-md-4 fa fa-thumbs-up fs-2" })
+
                 </div>
+
+                <div class="col-lg-2" style="max-width:100px">
+
+                    @Html.ActionLink(" Save", "Save", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary col-md-4 fa fa-save fs-2" })
+
+                </div>
+
+
+
 
 
             </div>
@@ -43,5 +71,6 @@
         </div>
     }
 </div>
+
 
 

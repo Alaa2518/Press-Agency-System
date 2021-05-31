@@ -8,6 +8,8 @@ using System.Web.UI;
 using WebApplication3.Context;
 using WebApplication3.Models;
 using WebApplication3.Models.ViewModels;
+using System.Web.Script.Serialization;
+using System.Data.Entity;
 
 namespace WebApplication3.Controllers
 {
@@ -19,10 +21,53 @@ namespace WebApplication3.Controllers
         public ActionResult Index()
         {
             IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true);
-             
+            
             return View(Articles);
         }
+      
         
+        [HttpPost]
+        public ActionResult Filter(string search)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                if(search != "")
+                {
+                    IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true && (x.ArticleTitle.Contains(search) || x.ArticleType.Contains(search)));
+                    if (Articles == null)
+                    {
+                        IEnumerable<Person> people = db.People.ToList().Where(x => x.RoleUserID == 2 && (x.LastName.Contains(search) || x.FirstName.Contains(search) || x.UserName.Contains(search)));
+
+                        Articles = getArricles(people);
+                        Articles = db.articles.ToList().Where(x => x.IfAproveed == true);
+
+                    }
+
+                    var json = new JavaScriptSerializer().Serialize(Articles);
+                    return Json(json);
+                }
+            }
+
+            return Json(new { });
+        }
+        public IEnumerable<Article> getArricles(IEnumerable<Person> people)
+        {
+            IEnumerable<Article> Articles ;
+            foreach(var p in people)
+            {
+                Articles = db.articles.ToList().Where(x =>x.EditorId == p.Id&& x.IfAproveed==true);
+                if (Articles != null)
+                {
+                    return (Articles);
+
+                }
+            }
+            return (null);
+        }
+        
+
+
         public ActionResult Login()
         {
 
@@ -107,7 +152,63 @@ namespace WebApplication3.Controllers
             Users.userRoles = department;
             return View(Users);
         }
+        
+        public ActionResult Show(int id) {
 
-       
+            IEnumerable<Article> article = db.articles.ToList().Where(x => x.Id == id) ;
+
+            return View(article);
+        }
+
+        public ActionResult Like(int id)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var article = db.articles.Single(x => x.Id == id);
+                article.NumberOfLikes = article.NumberOfLikes + 1;
+
+                db.Entry(article).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            
+            return RedirectToAction("Index");
+        }
+        public ActionResult DisLike(int id)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                var article = db.articles.Single(x => x.Id == id);
+                article.NumberOfDislikes = article.NumberOfDislikes + 1;
+
+                db.Entry(article).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Save(int id)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                Saving saving = new Saving();
+                saving.PostId = id;
+                ;
+                saving.userId = int.Parse(Session["UserID"]);
+                db.saving.Add(saving);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
