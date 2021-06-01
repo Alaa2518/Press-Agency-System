@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Press Agendy System</title>
     @Styles.Render("~/Content/css")
-     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/sidebar.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -18,6 +19,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
+                @if (Session["UserID"] != null) { 
+                   <button type="button" class="btn btn-default" id="profile" onclick="view()">@Request.Cookies["UserName"].Value.ToString()</button>
+                }
+                
                 @Html.ActionLink("Press Agency", "Index", "Wall", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <form class="navbar-form navbar-left" id="filter" >
@@ -31,7 +37,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Wall")</li>
 
-                    @if (Session["UserID"] == null)
+                    @if (Session["UserID"] == null )
                     {
                         <li>@Html.ActionLink("Register", "Register", "Wall")</li>
                         <li>@Html.ActionLink("Login", "Login", "Wall")</li>
@@ -40,7 +46,15 @@
                     {
                         <li>@Html.ActionLink("Logout", "Login", "Wall")</li>
                         Session["UserID"] = null;
+                        Session["UserName"] = null;
+                        Session["UserRole"] = null;
+
                     }
+
+
+
+
+                    
 
 
                 </ul>
@@ -48,12 +62,29 @@
         </div>
     </div>
     <div class="container body-content">
+        @if (Request.Cookies["UserID"] != null) {
+        <div id="Profile" class="container side display_none">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    @Html.ActionLink("Profile", "ViewProfile", new { id = int.Parse(Request.Cookies["UserID"].Value.ToString()) }, htmlAttributes: new { @class = "btn btn-secondary " })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Saved Postes", "SavedPostes", new { id =int.Parse(Request.Cookies["UserID"].Value.ToString())}, htmlAttributes: new { @class = "btn btn-secondary " })
+                  
+                 </li>
+            </ul>
+
+        </div>
+        
+        }
+        
         <div class="container" style="display:none" id="found">
-           
+
         </div>
         <div class="container" style="display:none" id="notFound">
             not found
         </div>
+        
         @RenderBody()
         <hr />
         <footer>
@@ -90,6 +121,25 @@
 
                     })
                 })
+                
+                view = function () {
+                    if ($("#Profile").hasClass("display_none")) {
+                        $("#Profile").removeClass("display_none");
+                        
+                        $("#Profile").show(1500);
+                        
+                    }
+                    else {
+                        
+                        $("#Profile").addClass("display_none");
+                        $("#Profile").hide(1500);
+                        
+                        
+                    }
+                  
+                   
+
+                }
             })
 
 

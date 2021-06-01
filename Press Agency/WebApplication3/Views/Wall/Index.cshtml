@@ -7,7 +7,11 @@
 }
 
 
+
+
+
 <div class="container " style="border:2px solid #808080;min-height:350px; padding:10px 35px;max-width:90%;border-radius:2px;">
+
     @foreach (var item in Model)
     {
         <div class="row justify-content-center">
@@ -46,19 +50,21 @@
                     <i class="fa fa-eye"></i> @item.NumberOfViewers
                 </div>
                 <div class="col-lg-2" style="max-width:100px">
-                    @item.NumberOfDislikes
-                    @Html.ActionLink(" ", "DisLike", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary col-md-4 fa fa-thumbs-down fs-2" })
-
+                    
+                   
+                    <button class="col-md-4 btn btn-link btn btn-secondary " id="DisLike" onclick="Dislike(@item.Id)"><i class="fa fa-thumbs-down fs-2"></i>@item.NumberOfDislikes</button>
                 </div>
                 <div class="col-lg-2" style="max-width:100px">
-                    @item.NumberOfLikes
-                    @Html.ActionLink(" ", "Like", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary col-md-4 fa fa-thumbs-up fs-2" })
+                   
+                    <button class="col-md-4 btn btn-link btn btn-secondary " id="Like" onclick="Like(@item.Id)"><i class="fa fa-thumbs-up fs-2"></i> @item.NumberOfLikes</button>
+
+                    
 
                 </div>
 
                 <div class="col-lg-2" style="max-width:100px">
+                    <button class="col-md-4 btn btn-link btn btn-secondary " id="Save" onclick="Save(@item.Id)"><i class="fa fa-save fs-2"></i></button>
 
-                    @Html.ActionLink(" Save", "Save", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary col-md-4 fa fa-save fs-2" })
 
                 </div>
 
@@ -74,3 +80,77 @@
 
 
 
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+            
+
+        Dislike = function (id) {
+            $.ajax({
+                type: "POST",
+                url: "/Wall/DisLike/"+id,
+                
+                success: function (resoponse) {
+                    if (resoponse) {
+                        alert("Dislike");
+                    }
+                    else {
+                        alert("like");
+                    }
+                },
+
+
+
+            })
+
+        }
+
+        Like = function (id) {
+            $.ajax({
+                type: "POST",
+                url: "/Wall/Like/" + id,
+
+                success: function (resoponse) {
+                    if (resoponse) {
+                        alert("like");
+                    }
+                    else {
+                        alert("Dislike");
+                    }
+                },
+
+
+
+            })
+
+        }
+
+        Save = function (id) {
+            $.ajax({
+                type: "POST",
+                url: "/Wall/Save/" + id,
+
+                success: function (resoponse) {
+                    if (resoponse) {
+                        alert("Dislike");
+                    }
+                    else {
+                        alert("like");
+                    }
+                },
+
+
+
+            })
+
+        }
+
+
+              
+
+
+    </script>
+
+}

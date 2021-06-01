@@ -20,6 +20,7 @@ namespace WebApplication3.Controllers
         // GET: Wall
         public ActionResult Index()
         {
+            Database.SetInitializer<ProductMangerContext>(null);
             IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true);
             
             return View(Articles);
@@ -37,34 +38,22 @@ namespace WebApplication3.Controllers
                     IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true && (x.ArticleTitle.Contains(search) || x.ArticleType.Contains(search)));
                     if (Articles == null)
                     {
-                        IEnumerable<Person> people = db.People.ToList().Where(x => x.RoleUserID == 2 && (x.LastName.Contains(search) || x.FirstName.Contains(search) || x.UserName.Contains(search)));
+                        Person people = db.People.Single(x => x.RoleUserID == 2 && (x.LastName.Contains(search) || x.FirstName.Contains(search) || x.UserName.Contains(search)));
 
-                        Articles = getArricles(people);
-                        Articles = db.articles.ToList().Where(x => x.IfAproveed == true);
+                       
+                        Articles = db.articles.ToList().Where(x => (x.IfAproveed == true && people.Id == x.EditorId));
 
                     }
 
                     var json = new JavaScriptSerializer().Serialize(Articles);
-                    return Json(json);
+                    
+                    return Json(new {Articles});
                 }
             }
 
-            return Json(new { });
+            return Json(new {resulet = 0 });
         }
-        public IEnumerable<Article> getArricles(IEnumerable<Person> people)
-        {
-            IEnumerable<Article> Articles ;
-            foreach(var p in people)
-            {
-                Articles = db.articles.ToList().Where(x =>x.EditorId == p.Id&& x.IfAproveed==true);
-                if (Articles != null)
-                {
-                    return (Articles);
-
-                }
-            }
-            return (null);
-        }
+      
         
 
 
@@ -73,34 +62,44 @@ namespace WebApplication3.Controllers
 
             return View();
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserLongin users)
         {
+           
             
-             
+
             if (ModelState.IsValid)
             {
-                
-                 var Use = db.People.Where(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password) ).FirstOrDefault();
-           
+                if (db.People.Single(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password)) != null)
+                {
+                    var Use = db.People.Single(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password));
+
                     if (Use != null)
                     {
                         Session["UserID"] = Use.Id.ToString();
-                        Session["UserName"] = Use.Email.ToString();
+                        Session["UserName"] = Use.UserName.ToString();
                         Session["UserRole"] = Use.RoleUserID.ToString();
-                        
+                        Response.Cookies.Add(new HttpCookie("UserID", Use.Id.ToString()));
+                        Response.Cookies.Add(new HttpCookie("UserName", Use.UserName.ToString()));
+
+                        Response.Cookies.Add(new HttpCookie("UserRole", Use.RoleUserID.ToString()));
+
+
+
+
                         if (Use.RoleUserID == 1)
-                            return RedirectToAction( "Index", "Dashboard");
+                            return RedirectToAction("Index", "Dashboard");
                         else if (Use.RoleUserID == 2)
-                            return RedirectToAction( "Index", "Factory");
+                            return RedirectToAction("Index", "Factory");
                         else if (Use.RoleUserID == 3)
-                            return RedirectToAction( "Logedin", "Wall");
-                        else 
+                            return RedirectToAction("Index", "Wall");
+                        else
                             return View(users);
                     }
-                return View(users);
-
+                    return View(users);
+                }
             }
             return View(users);
         }
@@ -124,6 +123,7 @@ namespace WebApplication3.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 if (file != null)
                 {
                     string pic = System.IO.Path.GetFileName(file.FileName);
@@ -135,7 +135,14 @@ namespace WebApplication3.Controllers
                 }
                 db.People.Add(Users.Person);
                 db.SaveChanges();
-                if(Users.Person.RoleUserID == 3)
+                Session["UserID"] = Users.Person.Id.ToString();
+                Session["UserName"] = Users.Person.UserName.ToString();
+                Session["UserRole"] = Users.Person.RoleUserID.ToString();
+                Response.Cookies.Add(new HttpCookie("UserID", Users.Person.Id.ToString()));
+                Response.Cookies.Add(new HttpCookie("UserName", Users.Person.UserName.ToString()));
+                Response.Cookies.Add(new HttpCookie("UserRole", Users.Person.RoleUserID.ToString()));
+
+                if (Users.Person.RoleUserID == 3)
                 {
                     return RedirectToAction("Index");
                 }
@@ -164,32 +171,53 @@ namespace WebApplication3.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.Like.Single(x => x.ART_ID == id && x.person_ID == int.Parse(Request.Cookies["UserID"].Value.ToString())) == null)
+                {
+                    var article = db.articles.Single(x => x.Id == id);
+                    article.NumberOfDislikes = article.NumberOfLikes + 1;
+                    Like like = new Like();
+                    like.person_ID = int.Parse(Request.Cookies["UserID"].Value.ToString());
+                    like.ART_ID = id;
+                    db.Like.Add(like);
+                    db.Entry(article).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                var article = db.articles.Single(x => x.Id == id);
-                article.NumberOfLikes = article.NumberOfLikes + 1;
+                }
+                else
+                {
+                    return Json(new { respons = 0 });
+                }
 
-                db.Entry(article).State = EntityState.Modified;
-                db.SaveChanges();
             }
 
-            
-            return RedirectToAction("Index");
+
+            return Json(new { respons = 1 });
         }
         public ActionResult DisLike(int id)
         {
 
             if (ModelState.IsValid)
             {
+                if (db.disLike.Single(x =>x.art_ID==id && x.per_ID == int.Parse(Request.Cookies["UserID"].Value.ToString())) == null) {
+                    var article = db.articles.Single(x => x.Id == id);
+                    article.NumberOfDislikes = article.NumberOfDislikes + 1;
+                    DisLike dislike = new DisLike();
+                    dislike.per_ID= int.Parse(Request.Cookies["UserID"].Value.ToString());
+                    dislike.art_ID = id;
+                    db.disLike.Add(dislike);
+                    db.Entry(article).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                var article = db.articles.Single(x => x.Id == id);
-                article.NumberOfDislikes = article.NumberOfDislikes + 1;
-
-                db.Entry(article).State = EntityState.Modified;
-                db.SaveChanges();
+                }
+                else
+                {
+                    return Json(new { respons = 0 });
+                }
+                
             }
 
 
-            return RedirectToAction("Index");
+            return Json(new {respons= 1 });
         }
 
         public ActionResult Save(int id)
@@ -197,18 +225,42 @@ namespace WebApplication3.Controllers
 
             if (ModelState.IsValid)
             {
+                if (Request.Cookies["UserID"] != null)
+                {
+                    Saving saving = new Saving();
+                    saving.PostId = id;
 
-                Saving saving = new Saving();
-                saving.PostId = id;
-                ;
-                saving.userId = int.Parse(Session["UserID"]);
-                db.saving.Add(saving);
-                db.SaveChanges();
+                    if (db.saving.Single(x => x.PostId == id && x.userId == int.Parse(Request.Cookies["UserID"].Value.ToString())) == null)
+                    {
+                        saving.userId = int.Parse(Request.Cookies["UserID"].Value.ToString());
+                        db.saving.Add(saving);
+                        db.SaveChanges();
+                        return Json(new { respons = 0 });
+                    }
+                    else
+                    {
+                        return Json(new { respons = 0 });
+                    }
+                }
             }
 
-            return RedirectToAction("Index");
+            return Json(new { respons = 1 });
+        }
+        /*
+        public ActionResult SavedPostes(int id)
+        {
+
+        }
+        */
+        public ActionResult ViewProfile(int id)
+        {
+            Person person = db.People.Single(x => x.Id == id);
+
+
+            return View(person);
+
         }
 
-
     }
+    
 }

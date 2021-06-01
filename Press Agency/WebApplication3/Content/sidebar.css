@@ -1,0 +1,17 @@
+﻿
+.side {
+    border: 2px solid #808080;
+    background-color: #4e5d6c;
+    width: 300px;
+    height: 92%;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 100;
+}
+
+
+
+.display_none {
+    display: none;
+}

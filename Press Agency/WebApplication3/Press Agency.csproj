@@ -168,8 +168,14 @@
     <Compile Include="Migrations\202105300638365_Removesavingid.designer.cs">
       <DependentUpon>202105300638365_Removesavingid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106012048039_LikeANDdisLike.cs" />
+    <Compile Include="Migrations\202106012048039_LikeANDdisLike.designer.cs">
+      <DependentUpon>202106012048039_LikeANDdisLike.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\DisLike.cs" />
+    <Compile Include="Models\Like.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Questions.cs" />
@@ -186,6 +192,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\sidebar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -284,6 +291,7 @@
     <Content Include="Views\Factory\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Wall\Show.cshtml" />
+    <Content Include="Views\Wall\ViewProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105300638365_Removesavingid.resx">
       <DependentUpon>202105300638365_Removesavingid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106012048039_LikeANDdisLike.resx">
+      <DependentUpon>202106012048039_LikeANDdisLike.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

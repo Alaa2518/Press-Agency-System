@@ -22,8 +22,8 @@ namespace WebApplication3.Context
         public DbSet<Article> articles { get; set; }
         public DbSet<Questions> questions { get; set; }
         public DbSet<Saving> saving { get; set; }
-        
-
+        public DbSet<Like> Like { get; set; }
+        public DbSet<DisLike> disLike { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
