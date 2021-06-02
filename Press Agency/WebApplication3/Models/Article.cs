@@ -30,8 +30,7 @@ namespace WebApplication3.Models
         public bool IfAproveed { get; set; }
 
 
-        //[ForeignKey("Peroson")]
-        public virtual IEnumerable<Photo> Images { get; set; }
+        
         public virtual IEnumerable<Person> Person { get; set; }
         public int EditorId { get; set; }
 

@@ -172,6 +172,46 @@
     <Compile Include="Migrations\202106012048039_LikeANDdisLike.designer.cs">
       <DependentUpon>202106012048039_LikeANDdisLike.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106021927104_UpdateAtrupute.cs" />
+    <Compile Include="Migrations\202106021927104_UpdateAtrupute.designer.cs">
+      <DependentUpon>202106021927104_UpdateAtrupute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106021937248_UpdateAtrupute1.cs" />
+    <Compile Include="Migrations\202106021937248_UpdateAtrupute1.designer.cs">
+      <DependentUpon>202106021937248_UpdateAtrupute1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022023278_UpdateAtrupute2.cs" />
+    <Compile Include="Migrations\202106022023278_UpdateAtrupute2.designer.cs">
+      <DependentUpon>202106022023278_UpdateAtrupute2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022024481_UpdateAtrupute3.cs" />
+    <Compile Include="Migrations\202106022024481_UpdateAtrupute3.designer.cs">
+      <DependentUpon>202106022024481_UpdateAtrupute3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022047446_UserModify.cs" />
+    <Compile Include="Migrations\202106022047446_UserModify.designer.cs">
+      <DependentUpon>202106022047446_UserModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022118431_UserModify1.cs" />
+    <Compile Include="Migrations\202106022118431_UserModify1.designer.cs">
+      <DependentUpon>202106022118431_UserModify1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022124185_UserModify2.cs" />
+    <Compile Include="Migrations\202106022124185_UserModify2.designer.cs">
+      <DependentUpon>202106022124185_UserModify2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022143026_deleteDB.cs" />
+    <Compile Include="Migrations\202106022143026_deleteDB.designer.cs">
+      <DependentUpon>202106022143026_deleteDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022215045_deleteDB1.cs" />
+    <Compile Include="Migrations\202106022215045_deleteDB1.designer.cs">
+      <DependentUpon>202106022215045_deleteDB1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106022219441_deleteDB2.cs" />
+    <Compile Include="Migrations\202106022219441_deleteDB2.designer.cs">
+      <DependentUpon>202106022219441_deleteDB2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\DisLike.cs" />
@@ -182,6 +222,7 @@
     <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\ViewModels\PersonRoleViewModel.cs" />
+    <Compile Include="Models\ViewModels\PostesImagesView.cs" />
     <Compile Include="Models\ViewModels\UserLongin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -292,6 +333,7 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Wall\Show.cshtml" />
     <Content Include="Views\Wall\ViewProfile.cshtml" />
+    <Content Include="Views\Wall\SavedPostes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -330,6 +372,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106012048039_LikeANDdisLike.resx">
       <DependentUpon>202106012048039_LikeANDdisLike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021927104_UpdateAtrupute.resx">
+      <DependentUpon>202106021927104_UpdateAtrupute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021937248_UpdateAtrupute1.resx">
+      <DependentUpon>202106021937248_UpdateAtrupute1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022023278_UpdateAtrupute2.resx">
+      <DependentUpon>202106022023278_UpdateAtrupute2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022024481_UpdateAtrupute3.resx">
+      <DependentUpon>202106022024481_UpdateAtrupute3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022047446_UserModify.resx">
+      <DependentUpon>202106022047446_UserModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022118431_UserModify1.resx">
+      <DependentUpon>202106022118431_UserModify1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022124185_UserModify2.resx">
+      <DependentUpon>202106022124185_UserModify2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022143026_deleteDB.resx">
+      <DependentUpon>202106022143026_deleteDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022215045_deleteDB1.resx">
+      <DependentUpon>202106022215045_deleteDB1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106022219441_deleteDB2.resx">
+      <DependentUpon>202106022219441_deleteDB2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

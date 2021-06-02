@@ -21,9 +21,11 @@ namespace WebApplication3.Controllers
         public ActionResult Index()
         {
             Database.SetInitializer<ProductMangerContext>(null);
-            IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true);
             
-            return View(Articles);
+            PostesImagesView postesImages = new PostesImagesView();
+            postesImages.articles = db.articles.ToList().Where(x => x.IfAproveed == true);
+            postesImages.photos = db.photos.ToList();
+            return View(postesImages);
         }
       
         
@@ -47,7 +49,7 @@ namespace WebApplication3.Controllers
 
                     var json = new JavaScriptSerializer().Serialize(Articles);
                     
-                    return Json(new {Articles});
+                    return Json(Articles);
                 }
             }
 
@@ -162,21 +164,25 @@ namespace WebApplication3.Controllers
         
         public ActionResult Show(int id) {
 
-            IEnumerable<Article> article = db.articles.ToList().Where(x => x.Id == id) ;
-
-            return View(article);
+            
+            PostesImagesView postesImages = new PostesImagesView();
+            postesImages.articles = db.articles.ToList().Where(x => x.Id == id);
+            postesImages.photos = db.photos.ToList();
+            return View(postesImages);
         }
 
         public ActionResult Like(int id)
         {
             if (ModelState.IsValid)
             {
-                if (db.Like.Single(x => x.ART_ID == id && x.person_ID == int.Parse(Request.Cookies["UserID"].Value.ToString())) == null)
+                int userid = int.Parse(Request.Cookies["UserID"].Value.ToString());
+                Like like = db.Like.Single(x => x.ART_ID == id && x.person_ID == userid);
+                if ( like== null)
                 {
                     var article = db.articles.Single(x => x.Id == id);
                     article.NumberOfDislikes = article.NumberOfLikes + 1;
-                    Like like = new Like();
-                    like.person_ID = int.Parse(Request.Cookies["UserID"].Value.ToString());
+                   
+                    like.person_ID = userid;
                     like.ART_ID = id;
                     db.Like.Add(like);
                     db.Entry(article).State = EntityState.Modified;
@@ -187,7 +193,7 @@ namespace WebApplication3.Controllers
                 {
                     return Json(new { respons = 0 });
                 }
-
+                
             }
 
 
@@ -198,16 +204,18 @@ namespace WebApplication3.Controllers
 
             if (ModelState.IsValid)
             {
-                if (db.disLike.Single(x =>x.art_ID==id && x.per_ID == int.Parse(Request.Cookies["UserID"].Value.ToString())) == null) {
+                int userid = int.Parse(Request.Cookies["UserID"].Value.ToString());
+                DisLike dislike = db.disLike.Single(x => x.art_ID == id && x.per_ID == userid);
+                if (dislike == null) {
                     var article = db.articles.Single(x => x.Id == id);
                     article.NumberOfDislikes = article.NumberOfDislikes + 1;
-                    DisLike dislike = new DisLike();
-                    dislike.per_ID= int.Parse(Request.Cookies["UserID"].Value.ToString());
+
+                    dislike.per_ID = userid; 
                     dislike.art_ID = id;
                     db.disLike.Add(dislike);
                     db.Entry(article).State = EntityState.Modified;
                     db.SaveChanges();
-
+                    
                 }
                 else
                 {
@@ -227,11 +235,13 @@ namespace WebApplication3.Controllers
             {
                 if (Request.Cookies["UserID"] != null)
                 {
-                    Saving saving = new Saving();
-                    saving.PostId = id;
+                    int userid = int.Parse(Request.Cookies["UserID"].Value.ToString());
+                    Saving saving = db.saving.Single(x => x.PostId == id && x.userId == userid);  
 
-                    if (db.saving.Single(x => x.PostId == id && x.userId == int.Parse(Request.Cookies["UserID"].Value.ToString())) == null)
+                    
+                    if (saving == null)
                     {
+                        saving.PostId = id;
                         saving.userId = int.Parse(Request.Cookies["UserID"].Value.ToString());
                         db.saving.Add(saving);
                         db.SaveChanges();
@@ -246,12 +256,15 @@ namespace WebApplication3.Controllers
 
             return Json(new { respons = 1 });
         }
-        /*
+        
         public ActionResult SavedPostes(int id)
         {
+            IEnumerable<Saving> save = db.saving.ToList().Where(x => x.userId == id);
 
+    
+            return View(save);
         }
-        */
+        
         public ActionResult ViewProfile(int id)
         {
             Person person = db.People.Single(x => x.Id == id);

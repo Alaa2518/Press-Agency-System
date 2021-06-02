@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication3.Models.Article>
+﻿@model WebApplication3.Models.ViewModels.PostesImagesView
 
 @{
     ViewBag.Title = "Index";
@@ -11,8 +11,8 @@
 
 
 <div class="container " style="border:2px solid #808080;min-height:350px; padding:10px 35px;max-width:90%;border-radius:2px;">
-
-    @foreach (var item in Model)
+    
+    @foreach (var item in Model.articles)
     {
         <div class="row justify-content-center">
             <div class="row ">
@@ -23,13 +23,16 @@
                 <h2 class="col-lg-12 ">@item.ArticleTitle</h2>
             </div>
 
-            @if (item.Images != null)
+            @if (Model.photos != null)
             {
 
                 <div class="row justify-content-between border border-secondary">
-                    @foreach (var image in item.Images)
+                    @foreach (var image in Model.photos)
                     {
-                        <img src="~/images/profiles/@image.Path" class="rounded" alt="">
+                        if(image.Aritcle_Id == item.Id) { 
+                           <img src="~/images/profiles/@image.Path" class="rounded" alt="" style="width:400px;height:400px;">
+                        }
+                        
                     }
 
                 </div>
@@ -38,6 +41,8 @@
                 <div class="col-lg-12">
 
                     @item.ArticleBody
+
+                    @Html.ActionLink("See More...", "Show", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary " })
 
 
                 </div>

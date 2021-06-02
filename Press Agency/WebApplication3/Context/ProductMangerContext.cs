@@ -15,7 +15,7 @@ namespace WebApplication3.Context
         {
 
         }
-
+        
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Photo> photos { get; set; }
@@ -24,7 +24,7 @@ namespace WebApplication3.Context
         public DbSet<Saving> saving { get; set; }
         public DbSet<Like> Like { get; set; }
         public DbSet<DisLike> disLike { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);

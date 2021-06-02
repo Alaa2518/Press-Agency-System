@@ -13,11 +13,9 @@ namespace WebApplication3.Models
         public string Answer { get; set; }
 
         public virtual Person Editor { get; set; }
-        public int EditorAnswerId { get; set; }
-
         
         public bool IsAnswer { get; set; }
-
+        public int Editor_Id { get; set; }
 
     }
 }

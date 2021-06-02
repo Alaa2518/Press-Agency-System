@@ -18,11 +18,12 @@ namespace WebApplication3.Models
         [Display(Name = "Article Image")]
         public string Path { get; set; }
 
-        //[ForeignKey("Article")]
+       
         
         public virtual Article Aritcle { get; set; }
-        public int AritclesID { get; set; }
+        
 
+        public int Aritcle_Id { get; set; }
 
 
 
