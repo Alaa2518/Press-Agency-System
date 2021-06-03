@@ -22,13 +22,16 @@ namespace WebApplication3.Context
         public DbSet<Article> articles { get; set; }
         public DbSet<Questions> questions { get; set; }
         public DbSet<Saving> saving { get; set; }
-        public DbSet<Like> Like { get; set; }
+        public DbSet<LikesPost> LikesPosts { get; set; }
         public DbSet<DisLike> disLike { get; set; }
         
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<WebApplication3.Models.ViewModels.EditProfile> EditProfiles { get; set; }
     }
 }

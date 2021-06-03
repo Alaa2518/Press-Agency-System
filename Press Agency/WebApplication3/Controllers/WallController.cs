@@ -29,31 +29,31 @@ namespace WebApplication3.Controllers
         }
       
         
-        [HttpPost]
+        [HttpGet]
         public ActionResult Filter(string search)
         {
             if (ModelState.IsValid)
             {
                
-                if(search != "")
+                if(search !=null)
                 {
                     IEnumerable<Article> Articles = db.articles.ToList().Where(x => x.IfAproveed == true && (x.ArticleTitle.Contains(search) || x.ArticleType.Contains(search)));
                     if (Articles == null)
                     {
-                        Person people = db.People.Single(x => x.RoleUserID == 2 && (x.LastName.Contains(search) || x.FirstName.Contains(search) || x.UserName.Contains(search)));
+                        Person people = db.People.FirstOrDefault(x => x.RoleUserID == 2 && (x.LastName.Contains(search) || x.FirstName.Contains(search) || x.UserName.Contains(search)));
 
-                       
-                        Articles = db.articles.ToList().Where(x => (x.IfAproveed == true && people.Id == x.EditorId));
+                       if(people != null)
+                          Articles = db.articles.ToList().Where(x => (x.IfAproveed == true && people.Id == x.EditorId));
 
                     }
 
-                    var json = new JavaScriptSerializer().Serialize(Articles);
                     
-                    return Json(Articles);
+                    
+                    return Json(new { resulet = 1 , Articles }, JsonRequestBehavior.AllowGet);
                 }
             }
 
-            return Json(new {resulet = 0 });
+            return Json(new {resulet = 0 },JsonRequestBehavior.AllowGet);
         }
       
         
@@ -74,23 +74,16 @@ namespace WebApplication3.Controllers
 
             if (ModelState.IsValid)
             {
-                if (db.People.Single(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password)) != null)
+                if (db.People.FirstOrDefault(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password)) != null)
                 {
-                    var Use = db.People.Single(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password));
+                    var Use = db.People.FirstOrDefault(a => a.Email.Equals(users.Email) && a.Password.Equals(users.Password));
 
                     if (Use != null)
                     {
-                        Session["UserID"] = Use.Id.ToString();
-                        Session["UserName"] = Use.UserName.ToString();
-                        Session["UserRole"] = Use.RoleUserID.ToString();
+                        Session["user"] = Use;
                         Response.Cookies.Add(new HttpCookie("UserID", Use.Id.ToString()));
                         Response.Cookies.Add(new HttpCookie("UserName", Use.UserName.ToString()));
-
                         Response.Cookies.Add(new HttpCookie("UserRole", Use.RoleUserID.ToString()));
-
-
-
-
                         if (Use.RoleUserID == 1)
                             return RedirectToAction("Index", "Dashboard");
                         else if (Use.RoleUserID == 2)
@@ -106,8 +99,14 @@ namespace WebApplication3.Controllers
             return View(users);
         }
 
-        
-        
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            return RedirectToAction("Login");
+        }
+
+
         public ActionResult Register()
         {
             PersonRoleViewModel Users = new PersonRoleViewModel
@@ -137,9 +136,7 @@ namespace WebApplication3.Controllers
                 }
                 db.People.Add(Users.Person);
                 db.SaveChanges();
-                Session["UserID"] = Users.Person.Id.ToString();
-                Session["UserName"] = Users.Person.UserName.ToString();
-                Session["UserRole"] = Users.Person.RoleUserID.ToString();
+                Session["user"] = Users.Person;
                 Response.Cookies.Add(new HttpCookie("UserID", Users.Person.Id.ToString()));
                 Response.Cookies.Add(new HttpCookie("UserName", Users.Person.UserName.ToString()));
                 Response.Cookies.Add(new HttpCookie("UserRole", Users.Person.RoleUserID.ToString()));
@@ -168,100 +165,133 @@ namespace WebApplication3.Controllers
             PostesImagesView postesImages = new PostesImagesView();
             postesImages.articles = db.articles.ToList().Where(x => x.Id == id);
             postesImages.photos = db.photos.ToList();
+            
+            if (Session["user"] != null) {
+                int userid = int.Parse(((Person)Session["user"]).Id.ToString());
+
+                Saving save = db.saving.FirstOrDefault(x => x.PostId == id && x.userId ==userid);
+                if (save != null)
+                {
+                    db.saving.Remove(save);
+                    db.SaveChanges();
+                }
+
+            }
             return View(postesImages);
         }
-
+        
         public ActionResult Like(int id)
         {
             if (ModelState.IsValid)
             {
-                int userid = int.Parse(Request.Cookies["UserID"].Value.ToString());
-                Like like = db.Like.Single(x => x.ART_ID == id && x.person_ID == userid);
-                if ( like== null)
+                
+                int userid = int.Parse(((Person)Session["user"]).Id.ToString());
+                LikesPost like = db.LikesPosts.FirstOrDefault(x => x.ART_ID == id && x.Pers_ID == userid);
+                if ( like == null)
                 {
+                    LikesPost like1 = new LikesPost();
                     var article = db.articles.Single(x => x.Id == id);
                     article.NumberOfDislikes = article.NumberOfLikes + 1;
-                   
-                    like.person_ID = userid;
-                    like.ART_ID = id;
-                    db.Like.Add(like);
+                    DisLike dislike = db.disLike.FirstOrDefault(x => x.art_ID == id && x.per_ID == userid);
+                    if (dislike != null )
+                    {
+                        if(article.NumberOfDislikes > 0)
+                          article.NumberOfDislikes = article.NumberOfDislikes - 1;
+                        db.disLike.Remove(dislike);
+                    }
+                    like1.Pers_ID = userid;
+                    like1.ART_ID = id;
+                    db.LikesPosts.Add(like1);
                     db.Entry(article).State = EntityState.Modified;
                     db.SaveChanges();
-
+                    return Json(new { respons = 1 }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new { respons = 0 });
+                    return Json(new { respons = 0 }, JsonRequestBehavior.AllowGet);
                 }
                 
             }
 
 
-            return Json(new { respons = 1 });
+            return Json(new { respons = 0 }, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
         public ActionResult DisLike(int id)
         {
 
             if (ModelState.IsValid)
             {
-                int userid = int.Parse(Request.Cookies["UserID"].Value.ToString());
-                DisLike dislike = db.disLike.Single(x => x.art_ID == id && x.per_ID == userid);
+                
+                int userid = int.Parse(((Person)Session["user"]).Id.ToString());
+                DisLike dislike = db.disLike.FirstOrDefault(x => x.art_ID == id && x.per_ID == userid);
                 if (dislike == null) {
                     var article = db.articles.Single(x => x.Id == id);
                     article.NumberOfDislikes = article.NumberOfDislikes + 1;
-
-                    dislike.per_ID = userid; 
-                    dislike.art_ID = id;
-                    db.disLike.Add(dislike);
+                    LikesPost like = db.LikesPosts.FirstOrDefault(x => x.ART_ID == id && x.Pers_ID == userid);
+                    if (like != null)
+                    {
+                        if(article.NumberOfLikes > 0 )
+                        article.NumberOfLikes = article.NumberOfLikes - 1;
+                        db.LikesPosts.Remove(like);
+                    }
+                    DisLike dislike1 = new DisLike();
+                    dislike1.per_ID = userid; 
+                    dislike1.art_ID = id;
+                    
+                    db.disLike.Add(dislike1);
                     db.Entry(article).State = EntityState.Modified;
                     db.SaveChanges();
-                    
+
+                    return Json(new { respons = 1 }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new { respons = 0 });
+                    return Json(new { respons = 0 }, JsonRequestBehavior.AllowGet);
                 }
                 
             }
 
 
-            return Json(new {respons= 1 });
+            return Json(new {respons= 0 }, JsonRequestBehavior.AllowGet);
         }
-
+        
+        [HttpGet]
         public ActionResult Save(int id)
         {
 
             if (ModelState.IsValid)
             {
-                if (Request.Cookies["UserID"] != null)
+                if (Session["user"] != null)
                 {
-                    int userid = int.Parse(Request.Cookies["UserID"].Value.ToString());
-                    Saving saving = db.saving.Single(x => x.PostId == id && x.userId == userid);  
+                    
+                    int userid = int.Parse(((Person)Session["user"]).Id.ToString());
+                    Saving saving = db.saving.FirstOrDefault(x => x.PostId == id && x.userId == userid);  
 
                     
                     if (saving == null)
                     {
-                        saving.PostId = id;
-                        saving.userId = int.Parse(Request.Cookies["UserID"].Value.ToString());
-                        db.saving.Add(saving);
+                        Saving saving1 = new Saving();
+                        saving1.PostId = id;
+                        saving1.userId = int.Parse(((Person)Session["user"]).Id.ToString());
+                        db.saving.Add(saving1);
                         db.SaveChanges();
-                        return Json(new { respons = 0 });
+                        return Json(new { respons = 1 }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json(new { respons = 0 });
+                        return Json(new { respons = 0 }, JsonRequestBehavior.AllowGet);
                     }
                 }
             }
 
-            return Json(new { respons = 1 });
+            return Json(new { respons = 0 }, JsonRequestBehavior.AllowGet);
         }
         
         public ActionResult SavedPostes(int id)
         {
             IEnumerable<Saving> save = db.saving.ToList().Where(x => x.userId == id);
 
-    
             return View(save);
         }
         
@@ -272,6 +302,69 @@ namespace WebApplication3.Controllers
 
             return View(person);
 
+        }
+
+        public ActionResult Edit(int id)
+        {
+        
+            Person person = db.People.Single(x => x.Id == id);
+            EditProfile editProfile = new EditProfile();
+            editProfile.Id = person.Id;
+            editProfile.FirstName = person.FirstName;
+            editProfile.LastName = person.LastName;
+            editProfile.Password = person.Password;
+            editProfile.PhoneNumber = person.PhoneNumber;
+            editProfile.Email = person.Email;
+            editProfile.UserName = person.UserName;
+            editProfile.Image = person.Image;
+            editProfile.RoleUserID = person.RoleUserID;
+            return View(editProfile);
+        }
+        [HttpPost]
+        public ActionResult Edit(EditProfile editProfile, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                Person person = new Person();
+                if (file != null)
+                {
+                    string pic = System.IO.Path.GetFileName(file.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/images/profiles/"), pic);
+
+                    file.SaveAs(path);
+
+                    editProfile.Image = pic;
+                    person.Image = pic;
+                }
+                else {
+                    person.Image = editProfile.Image;
+                }
+                person.Id = editProfile.Id;
+                person.FirstName = editProfile.FirstName;
+                person.LastName = editProfile.LastName;
+                person.Password = editProfile.Password;
+                person.PhoneNumber = editProfile.PhoneNumber;
+                person.Email = editProfile.Email;
+                person.UserName = editProfile.UserName;
+                if (editProfile.RoleUserID == 0)
+                    person.RoleUserID = 3;
+                else
+                    person.RoleUserID = editProfile.RoleUserID;
+                db.Entry(person).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(editProfile);
+        }
+
+        public ActionResult AddQuestion(Questions questions)
+        {
+
+            
+            db.questions.Add(questions);
+            db.SaveChanges();
+
+            return Json(new { result = 1 });
         }
 
     }

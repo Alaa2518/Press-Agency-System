@@ -4,38 +4,88 @@
     ViewBag.Title = "SavedPostes";
     Layout = "~/Views/Shared/_WallLayout.cshtml";
 }
+@if (Session["user"] != null)
+{
+   
 
-<h2>SavedPostes</h2>
+  foreach (var item in Model)
+     {
+            
+             <div class="container " style="border:2px solid #808080;min-height:350px; padding:10px 35px;max-width:90%;border-radius:2px;">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PostId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userId)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var post in item.Article)
+        {
+            <div class="row justify-content-center">
+                <div class="row ">
+                    <p class="col-lg-9 col-sm-4 lift">@post.ArticleType</p>
+                    <p class="col-lg-3 col-sm-4 right">Created in @post.CreationDate</p>
+                </div>
+                <div class="row justify-content-center ">
+                    <h2 class="col-lg-12 ">@post.ArticleTitle</h2>
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userId)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+                
+                <div class="row justify-content-around overflow-hidden " style=" min-height:250px; ">
+                    <div class="col-lg-12">
+
+                        @post.ArticleBody
+                       
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="row  justify-content-between border border-secondary ">
+                    <div class="col-lg-2" style="max-width:100px">
+                        <i class="fa fa-eye"></i> @post.NumberOfViewers
+                    </div>
+                    @if (Session["user"] != null)
+                    {
+
+                        <div class="col-lg-2" style="max-width:100px">
+
+
+                            <button class="col-md-4 btn btn-link btn btn-secondary " id="DisLike" onclick="Dislike(@post.Id)"><i class="fa fa-thumbs-down fs-2"></i>@post.NumberOfDislikes</button>
+                        </div>
+                        <div class="col-lg-2" style="max-width:100px">
+
+                            <button class="col-md-4 btn btn-link btn btn-secondary " id="Like" onclick="Like(@post.Id)"><i class="fa fa-thumbs-up fs-2"></i> @post.NumberOfLikes</button>
+
+
+
+                        </div>
+
+                        <div class="col-lg-2" style="max-width:100px">
+                            <button class="col-md-4 btn btn-link btn btn-secondary " id="Save" onclick="Save(@post.Id)"><i class="fa fa-save fs-2"></i></button>
+
+
+                        </div>
+
+                    }
+
+
+
+
+
+
+                </div>
+
+            </div>
+           }
+      </div>
+   
+             
+               
+   }
+
+   
+
+
 }
 
-</table>
+else
+{
+    Html.RenderAction("Index");
+}

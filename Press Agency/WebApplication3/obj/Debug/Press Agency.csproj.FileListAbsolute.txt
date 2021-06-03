@@ -187,12 +187,33 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\Microsoft.Managed.Core.targets
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\Microsoft.Win32.Primitives.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.AppContext.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Collections.Immutable.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Console.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Globalization.Calendars.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.IO.Compression.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.IO.Compression.ZipFile.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.IO.FileSystem.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Net.Http.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Net.Sockets.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Reflection.Metadata.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Text.Encoding.CodePages.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Threading.Tasks.Extensions.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.ValueTuple.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.XmlDocument.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.XPath.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.XPath.XDocument.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\vbc.exe
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\vbc.exe.config
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\vbc.rsp
@@ -214,6 +235,8 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\WebGrease.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\EntityFramework.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\EntityFramework.SqlServer.xml
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Newtonsoft.Json.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\System.Web.Helpers.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\System.Web.Mvc.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\System.Web.Optimization.xml
@@ -221,16 +244,8 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\System.Web.WebPages.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\System.Web.WebPages.Deployment.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\System.Web.WebPages.Razor.xml
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Newtonsoft.Json.xml
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Antlr3.Runtime.pdb
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csprojAssemblyReference.cache
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.CoreCompileInputs.cache
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.CopyComplete
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.pdb
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreateDatabase.resources
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.GenerateResource.cache
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreateDatabase1.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreateDatabase2.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreataeDatabase.resources
@@ -239,27 +254,6 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreataeDatabase3.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.firstCreataeDatabase4.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.Removesavingid.resources
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\Microsoft.Win32.Primitives.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.AppContext.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Console.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Diagnostics.StackTrace.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Globalization.Calendars.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.IO.Compression.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.IO.Compression.ZipFile.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Net.Http.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Net.Sockets.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.Encoding.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.Primitives.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.ValueTuple.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.ReaderWriter.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.XmlDocument.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.XPath.dll
-E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\roslyn\System.Xml.XPath.XDocument.dll
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.LikeANDdisLike.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.UpdateAtrupute.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.UpdateAtrupute1.resources
@@ -271,3 +265,14 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.deleteDB.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.deleteDB1.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.deleteDB2.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.likeDrop.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.likeDrop1.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.likeDrop2.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.GenerateResource.cache
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.CoreCompileInputs.cache
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csproj.CopyComplete
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.pdb
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csprojAssemblyReference.cache
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.alterdatabase.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.alterdatabase1.resources

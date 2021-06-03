@@ -41,8 +41,11 @@
                 <div class="col-lg-12">
 
                     @item.ArticleBody
+                    @if (Session["user"] != null)
+                    {
+                        @Html.ActionLink("See More...", "Show", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary " })
 
-                    @Html.ActionLink("See More...", "Show", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary " })
+                    }
 
 
                 </div>
@@ -54,24 +57,30 @@
                 <div class="col-lg-2" style="max-width:100px">
                     <i class="fa fa-eye"></i> @item.NumberOfViewers
                 </div>
-                <div class="col-lg-2" style="max-width:100px">
-                    
-                   
-                    <button class="col-md-4 btn btn-link btn btn-secondary " id="DisLike" onclick="Dislike(@item.Id)"><i class="fa fa-thumbs-down fs-2"></i>@item.NumberOfDislikes</button>
-                </div>
-                <div class="col-lg-2" style="max-width:100px">
-                   
-                    <button class="col-md-4 btn btn-link btn btn-secondary " id="Like" onclick="Like(@item.Id)"><i class="fa fa-thumbs-up fs-2"></i> @item.NumberOfLikes</button>
+                @if (Session["user"] != null)
+                {
 
-                    
-
-                </div>
-
-                <div class="col-lg-2" style="max-width:100px">
-                    <button class="col-md-4 btn btn-link btn btn-secondary " id="Save" onclick="Save(@item.Id)"><i class="fa fa-save fs-2"></i></button>
+                    <div class="col-lg-2" style="max-width:100px">
 
 
-                </div>
+                        <button class="col-md-4 btn btn-link btn btn-secondary " id="DisLike" onclick="Dislike(@item.Id)"><i class="fa fa-thumbs-down fs-2"></i>@item.NumberOfDislikes</button>
+                    </div>
+                    <div class="col-lg-2" style="max-width:100px">
+
+                        <button class="col-md-4 btn btn-link btn btn-secondary " id="Like" onclick="Like(@item.Id)"><i class="fa fa-thumbs-up fs-2"></i> @item.NumberOfLikes</button>
+
+
+
+                    </div>
+
+                    <div class="col-lg-2" style="max-width:100px">
+                        <button class="col-md-4 btn btn-link btn btn-secondary " id="Save" onclick="Save(@item.Id)"><i class="fa fa-save fs-2"></i></button>
+
+
+                    </div>
+
+                }
+
 
 
 
@@ -94,12 +103,12 @@
 
         Dislike = function (id) {
             $.ajax({
-                type: "POST",
+                type: "GEt",
                 url: "/Wall/DisLike/"+id,
                 
                 success: function (resoponse) {
-                    if (resoponse) {
-                        alert("Dislike");
+                    if (resoponse.respons) {
+                        alert("Dislike" + resoponse.respons);
                     }
                     else {
                         alert("like");
@@ -114,11 +123,11 @@
 
         Like = function (id) {
             $.ajax({
-                type: "POST",
+                type: "GEt",
                 url: "/Wall/Like/" + id,
 
                 success: function (resoponse) {
-                    if (resoponse) {
+                    if (resoponse.respons) {
                         alert("like");
                     }
                     else {
@@ -134,15 +143,15 @@
 
         Save = function (id) {
             $.ajax({
-                type: "POST",
+                type: "GEt",
                 url: "/Wall/Save/" + id,
 
                 success: function (resoponse) {
-                    if (resoponse) {
-                        alert("Dislike");
+                    if (resoponse.respons) {
+                        alert("you save post");
                     }
                     else {
-                        alert("like");
+                        alert("you saved post");
                     }
                 },
 

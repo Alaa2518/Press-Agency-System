@@ -5,14 +5,22 @@
     ViewBag.Title = "ViewProfile";
     Layout = "~/Views/Shared/_WallLayout.cshtml";
 }
-@if (Request.Cookies["UserID"] != null)
+@if (Session["user"] != null)
 {
     
 
     <div>
-        <h4>Person</h4>
+        
         <hr />
         <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+
+            <dd>
+
+                <img src="~/images/profiles/@Html.DisplayFor(model => model.Image)" class="img-thumbnail" id="photo" alt="" style="width:250px;height:250px;" />
+            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.UserName)
             </dt>
@@ -53,30 +61,13 @@
                 @Html.DisplayFor(model => model.PhoneNumber)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.RoleUserID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.RoleUserID)
-            </dd>
 
 
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Image)
-            </dt>
-
-            <dd>
-
-                <img src="~/images/profiles/@Html.DisplayFor(model => model.Image)" />
-            </dd>
 
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) 
     </p>
 }
 else
