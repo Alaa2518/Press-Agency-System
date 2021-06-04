@@ -24,7 +24,7 @@ namespace WebApplication3.Context
         public DbSet<Saving> saving { get; set; }
         public DbSet<LikesPost> LikesPosts { get; set; }
         public DbSet<DisLike> disLike { get; set; }
-        
+        public DbSet<NumberOfViews> numberOfViews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

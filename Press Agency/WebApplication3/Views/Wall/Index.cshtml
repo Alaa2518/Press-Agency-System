@@ -14,83 +14,96 @@
     
     @foreach (var item in Model.articles)
     {
-        <div class="row justify-content-center">
-            <div class="row ">
-                <p class="col-lg-9 col-sm-4 lift">@item.ArticleType</p>
-                <p class="col-lg-3 col-sm-4 right">Created in @item.CreationDate</p>
-            </div>
-            <div class="row justify-content-center ">
-                <h2 class="col-lg-12 ">@item.ArticleTitle</h2>
-            </div>
+    <div class="row justify-content-center" onshow="Views(@item.Id)">
+        <div class="row ">
+            <p class="col-lg-9 col-sm-4 lift">@item.ArticleType</p>
+            <p class="col-lg-3 col-sm-4 right">Created in @item.CreationDate</p>
+        </div>
+        <div class="row justify-content-center ">
+            <h2 class="col-lg-12 ">@item.ArticleTitle</h2>
+        </div>
 
-            @if (Model.photos != null)
-            {
+        @if (Model.photos != null)
+        {
 
-                <div class="row justify-content-between border border-secondary">
-                    @foreach (var image in Model.photos)
+            <div class="row justify-content-between border border-secondary">
+                @foreach (var image in Model.photos)
+                {
+                    if (image.Aritcle_Id == item.Id)
                     {
-                        if(image.Aritcle_Id == item.Id) { 
-                           <img src="~/images/profiles/@image.Path" class="rounded" alt="" style="width:400px;height:400px;">
-                        }
-                        
+                        <img src="~/images/profiles/@image.Path" class="rounded" alt="" style="width:400px;height:400px;">
                     }
 
-                </div>
-            }
-            <div class="row justify-content-around overflow-hidden " style=" min-height:250px; ">
-                <div class="col-lg-12">
-
-                    @item.ArticleBody
-                    @if (Session["user"] != null)
-                    {
-                        @Html.ActionLink("See More...", "Show", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary " })
-
-                    }
-
-
-                </div>
-
-
+                }
 
             </div>
-            <div class="row  justify-content-between border border-secondary ">
-                <div class="col-lg-2" style="max-width:100px">
-                    <i class="fa fa-eye"></i> @item.NumberOfViewers
-                </div>
+        }
+        <div class="row justify-content-around overflow-hidden " style=" min-height:250px; ">
+            <div class="col-lg-12">
+
+                @item.ArticleBody
                 @if (Session["user"] != null)
                 {
-
-                    <div class="col-lg-2" style="max-width:100px">
-
-
-                        <button class="col-md-4 btn btn-link btn btn-secondary " id="DisLike" onclick="Dislike(@item.Id)"><i class="fa fa-thumbs-down fs-2"></i>@item.NumberOfDislikes</button>
-                    </div>
-                    <div class="col-lg-2" style="max-width:100px">
-
-                        <button class="col-md-4 btn btn-link btn btn-secondary " id="Like" onclick="Like(@item.Id)"><i class="fa fa-thumbs-up fs-2"></i> @item.NumberOfLikes</button>
-
-
-
-                    </div>
-
-                    <div class="col-lg-2" style="max-width:100px">
-                        <button class="col-md-4 btn btn-link btn btn-secondary " id="Save" onclick="Save(@item.Id)"><i class="fa fa-save fs-2"></i></button>
-
-
-                    </div>
+                    @Html.ActionLink("See More...", "Show", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary " })
 
                 }
 
 
-
-
-
-
             </div>
 
+
+
         </div>
-    }
-</div>
+        <div class="row  justify-content-between border border-secondary ">
+            <div class="col-lg-2" style="max-width:100px">
+                <i class="fa fa-eye"></i> @item.NumberOfViewers
+            </div>
+            @if (Session["user"] != null)
+            {
+
+                <div class="col-lg-2" style="max-width:100px">
+
+
+                    <button class="col-md-4 btn btn-link btn btn-secondary " id="DisLike" onclick="Dislike(@item.Id)"><i class="fa fa-thumbs-down fs-2"></i>@item.NumberOfDislikes</button>
+                </div>
+                <div class="col-lg-2" style="max-width:100px">
+
+                    <button class="col-md-4 btn btn-link btn btn-secondary " id="Like" onclick="Like(@item.Id)"><i class="fa fa-thumbs-up fs-2"></i> @item.NumberOfLikes</button>
+
+
+
+                </div>
+
+                <div class="col-lg-2" style="max-width:100px">
+                    <button class="col-md-4 btn btn-link btn btn-secondary " id="Save" onclick="Save(@item.Id)"><i class="fa fa-save fs-2"></i></button>
+
+                </div>
+
+                <div class="col-lg-2" style="max-width:100px">
+                    @Html.ActionLink("show  Answers", "Answers", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary btn-lg-1 " })
+
+
+                </div>
+
+            }
+
+        </div>
+        @if (Session["user"] != null)
+        {
+    <div class="row  justify-content-between border border-secondary " style="margin-top:5px;">
+
+        <div class="col-lg-2" style="padding:0;">
+            <button type="button" class="btn btn-primary btn-lg-2" id="Quesion" onclick="ask(@item.Id)">Send Question</button>
+        </div>
+        
+            <input type="text" class="col-lg-10"  for="textArea" id="Ques" placeholder="Question ?"style="width:100%;height:40px;">
+        
+    </div>
+          }
+
+            </div>
+        }
+    </div>
 
 
 
@@ -99,19 +112,55 @@
 
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-            
+        ask = function (id) {
+            Qdata = $("#Ques").val();
+            $.ajax({
+                type: "POST",
+                url: "/Wall/AddQuestion/" + id,
+                data: {ques:Qdata},
+                success: function (resoponse) {
+                    if (resoponse.result) {
+                        alert("Qustion add" );
+                    }
+                    else {
+                        alert("not add");
+                    }
+                },
+
+
+
+            })
+        }
+        Views = function (id) {
+            $.ajax({
+                type: "GET",
+                url: "/Wall/CountViews/" + id,
+
+                success: function (resoponse) {
+                    if (resoponse.respons) {
+                        alert("view" );
+                    }
+                    else {
+                        alert("not view");
+                    }
+                },
+
+
+
+            })
+        }
 
         Dislike = function (id) {
             $.ajax({
-                type: "GEt",
+                type: "GET",
                 url: "/Wall/DisLike/"+id,
                 
                 success: function (resoponse) {
                     if (resoponse.respons) {
-                        alert("Dislike" + resoponse.respons);
+                        alert("Dislike");
                     }
                     else {
-                        alert("like");
+                        alert("Remove Dislike");
                     }
                 },
 
@@ -123,7 +172,7 @@
 
         Like = function (id) {
             $.ajax({
-                type: "GEt",
+                type: "GET",
                 url: "/Wall/Like/" + id,
 
                 success: function (resoponse) {
@@ -131,7 +180,7 @@
                         alert("like");
                     }
                     else {
-                        alert("Dislike");
+                        alert("Remove like");
                     }
                 },
 
@@ -143,7 +192,7 @@
 
         Save = function (id) {
             $.ajax({
-                type: "GEt",
+                type: "GET",
                 url: "/Wall/Save/" + id,
 
                 success: function (resoponse) {

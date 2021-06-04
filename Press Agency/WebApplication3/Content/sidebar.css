@@ -14,3 +14,14 @@
 .display_none {
     display: none;
 }
+
+.search {
+    height:300px;
+    color:#ffffff;
+    display:none;
+    position:fixed;
+    z-index:10;
+    top:40px;
+    margin:0 auto;
+    min-height:50px;
+}

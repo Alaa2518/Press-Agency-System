@@ -276,3 +276,6 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\Press Agency.csprojAssemblyReference.cache
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.alterdatabase.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.alterdatabase1.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.numberOfViews.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.Question.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.Question1.resources

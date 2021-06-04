@@ -47,13 +47,13 @@ namespace WebApplication3.Controllers
 
                     }
 
+
                     
-                    
-                    return Json(new { resulet = 1 , Articles }, JsonRequestBehavior.AllowGet);
+                    return Json(new { result = 1, Atical = Articles }, JsonRequestBehavior.AllowGet);
                 }
             }
 
-            return Json(new {resulet = 0 },JsonRequestBehavior.AllowGet);
+            return Json(new {result = 0 },JsonRequestBehavior.AllowGet);
         }
       
         
@@ -186,17 +186,17 @@ namespace WebApplication3.Controllers
             {
                 
                 int userid = int.Parse(((Person)Session["user"]).Id.ToString());
-                LikesPost like = db.LikesPosts.FirstOrDefault(x => x.ART_ID == id && x.Pers_ID == userid);
+                LikesPost like = db.LikesPosts.SingleOrDefault(x => x.ART_ID == id && x.Pers_ID == userid);
                 if ( like == null)
                 {
                     LikesPost like1 = new LikesPost();
                     var article = db.articles.Single(x => x.Id == id);
-                    article.NumberOfDislikes = article.NumberOfLikes + 1;
-                    DisLike dislike = db.disLike.FirstOrDefault(x => x.art_ID == id && x.per_ID == userid);
+                    article.NumberOfLikes = article.NumberOfLikes + 1;
+                    DisLike dislike = db.disLike.SingleOrDefault(x => x.art_ID == id && x.per_ID == userid);
                     if (dislike != null )
                     {
                         if(article.NumberOfDislikes > 0)
-                          article.NumberOfDislikes = article.NumberOfDislikes - 1;
+                           article.NumberOfDislikes = article.NumberOfDislikes - 1;
                         db.disLike.Remove(dislike);
                     }
                     like1.Pers_ID = userid;
@@ -232,7 +232,7 @@ namespace WebApplication3.Controllers
                     if (like != null)
                     {
                         if(article.NumberOfLikes > 0 )
-                        article.NumberOfLikes = article.NumberOfLikes - 1;
+                           article.NumberOfLikes = article.NumberOfLikes - 1;
                         db.LikesPosts.Remove(like);
                     }
                     DisLike dislike1 = new DisLike();
@@ -290,7 +290,10 @@ namespace WebApplication3.Controllers
         
         public ActionResult SavedPostes(int id)
         {
-            IEnumerable<Saving> save = db.saving.ToList().Where(x => x.userId == id);
+            
+            SavedPostes save = new SavedPostes();
+            save.articles = db.articles.ToList();
+            save.saving = db.saving.ToList().Where(x => x.userId == id);
 
             return View(save);
         }
@@ -357,16 +360,62 @@ namespace WebApplication3.Controllers
             return View(editProfile);
         }
 
-        public ActionResult AddQuestion(Questions questions)
+        
+       
+        [HttpPost]
+        public ActionResult AddQuestion(int id,String ques)
         {
+            if (ques != "")
+            {
 
-            
-            db.questions.Add(questions);
-            db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    var art = db.articles.Single(x => x.Id == id);
+                    int userId = int.Parse(((Person)Session["user"]).Id.ToString());
 
-            return Json(new { result = 1 });
+                    Questions questions = new Questions();
+                    questions.Answer_Id = userId;
+                    questions.Editor_Id = art.EditorId;
+                    questions.Qustion = ques;
+                    db.questions.Add(questions);
+                    db.SaveChanges();
+                    return Json(new { result = 1 });
+                }
+
+            }
+            return Json(new { result=0});
         }
+        public ActionResult Answers(int id) {
+           
+            int userId = int.Parse(((Person)Session["user"]).Id.ToString());
 
+            IEnumerable<Questions> questions = db.questions.ToList().Where(x => x.Answer_Id == userId && x.IsAnswer == true);
+            return View(questions);
+        }
+        [HttpGet]
+        public ActionResult CountViews(int id )
+        {
+            if (Session["user"]!= null)
+            {
+                int userId = int.Parse(((Person)Session["user"]).Id.ToString());
+                NumberOfViews NumView = db.numberOfViews.FirstOrDefault(x => x.article_Id == id && x.person_Id == userId);
+                if (NumView == null)
+                {
+                    NumberOfViews number = new NumberOfViews();
+                    number.person_Id = userId;
+                    number.article_Id = id;
+                    var article = db.articles.Single(x => x.Id == id);
+                    article.NumberOfViewers = article.NumberOfViewers + 1;
+
+                    db.numberOfViews.Add(number);
+                    db.Entry(article).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+            }
+
+            return Json(new {respons = 0 }, JsonRequestBehavior.AllowGet);
+        }
     }
     
 }

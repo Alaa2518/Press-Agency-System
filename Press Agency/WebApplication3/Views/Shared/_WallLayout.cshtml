@@ -57,23 +57,24 @@
     <div class="container body-content">
         @if (Session["user"] != null)
         {
-            <div id="Profile" class="container side display_none">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        @Html.ActionLink("Profile", "ViewProfile", new { id = int.Parse(((Person)Session["user"]).Id.ToString()) }, htmlAttributes: new { @class = "btn btn-secondary " })
-                    </li>
-                    <li class="list-group-item">
-                        @Html.ActionLink("Saved Postes", "SavedPostes", new { id = int.Parse(((Person)Session["user"]).Id.ToString()) }, htmlAttributes: new { @class = "btn btn-secondary " })
+        <div id="Profile" class="container side display_none">
+            <button type="button"  class="close" data-dismiss="alert" onclick="close()">&times;</button>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    @Html.ActionLink("Profile", "ViewProfile", new { id = int.Parse(((Person)Session["user"]).Id.ToString()) }, htmlAttributes: new { @class = "btn btn-secondary " })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Saved Postes", "SavedPostes", new { id = int.Parse(((Person)Session["user"]).Id.ToString()) }, htmlAttributes: new { @class = "btn btn-secondary " })
 
-                    </li>
-                </ul>
-                
-            </div>
+                </li>
+            </ul>
+
+        </div>
 
         }
 
-        <div class="container" style="display:none" id="found">
-
+        <div class="container lert alert-dismissible alert-info search" id="found">
+            <button type="button" class="close" data-dismiss="alert" onclick="closes()">&times;</button>
         </div>
         <div class="container" style="display:none" id="notFound">
             not found
@@ -93,27 +94,40 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+            $("#found").hide(0);
+            close = function () {
+                $("#Profile").hide(1500);
+            }
+            closes = function () {
+                $("#found").hide(1500);
+            }
             $("#btnsearch").click(function (e) {
                 valdata = $("#InSearch").val();
+                if (valdata != "") {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Wall/Filter",
+                        data: { search: valdata },
+                        success: function (resoponse) {
+                            
+                           
+                            if (resoponse.result == 1) {
 
-                $.ajax({
-                    type: "GET",
-                    url: "/Wall/Filter",
-                    data: { search: valdata },
-                    success: function (resoponse) {
-                        if (resoponse) {
-                            $("#found").show(1000);
-                            $("#found").html(resoponse);
-
-                        }
-                        else {
-                            $("#notFound").show(1000);
-                        }
-                    },
+                                $("#found").show(1000);
+                                resoponse.Atical.forEach(element => viewSearch(element.ArticleTitle, element.Id));
+                                
+                                
+                            }
+                            else {
+                                $("#notFound").show(1000);
+                            }
+                        },
 
 
 
-                })
+                    })
+                }
+                
             })
 
             view = function () {
@@ -136,7 +150,25 @@
             }
         })
 
+        viewSearch = function (search,id) {
+            
+            var tag = document.createElement("a");
+            tag.classList.add("btn");
+            tag.classList.add("btn-default");
+            tag.classList.add("btn-lg");
+            tag.classList.add("btn-block");
 
+            var text = document.createTextNode(search);
+            
+           
+            tag.appendChild(text);
+            tag.href = "/Wall/Show/" + id;
+            var element = document.querySelector("#found");
+            element.appendChild(tag);
+           
+
+            
+        }
     </script>
 
     @RenderSection("scripts", required: false)
