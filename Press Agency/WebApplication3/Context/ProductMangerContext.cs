@@ -33,5 +33,7 @@ namespace WebApplication3.Context
         }
 
         public System.Data.Entity.DbSet<WebApplication3.Models.ViewModels.EditProfile> EditProfiles { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication3.Models.ViewModels.NewPostsView> NewPostsViews { get; set; }
     }
 }

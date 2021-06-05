@@ -1,0 +1,94 @@
+﻿@model WebApplication3.Models.ViewModels.PostesImagesView
+@{
+    ViewBag.Title = "MyPostes";
+    Layout = "~/Views/Shared/_FacotryLayout.cshtml";
+}
+
+
+<div class="container " style="border:2px solid #808080;min-height:350px; padding:10px 35px;max-width:90%;border-radius:2px;">
+
+    @foreach (var item in Model.articles)
+    {
+        <div class="row justify-content-center" >
+            <div class="row ">
+                <p class="col-lg-9 col-sm-4 lift">@item.ArticleType</p>
+                <p class="col-lg-3 col-sm-4 right">Created in @item.CreationDate</p>
+            </div>
+            <div class="row justify-content-center ">
+                <h2 class="col-lg-12 ">@item.ArticleTitle</h2>
+            </div>
+
+            @if (Model.photos != null)
+            {
+
+                <div class="row justify-content-between border border-secondary">
+                    @foreach (var image in Model.photos)
+                    {
+                        if (image.Aritcle_Id == item.Id)
+                        {
+                            <img src="~/images/profiles/@image.Path" class="rounded" alt="" style="width:400px;height:400px;">
+                        }
+
+                    }
+
+                </div>
+            }
+            <div class="row justify-content-around overflow-hidden " style=" min-height:250px; ">
+                <div class="col-lg-12">
+
+                    @item.ArticleBody
+                   
+
+                </div>
+
+
+
+            </div>
+            <div class="row  justify-content-between border border-secondary ">
+                <div class="col-lg-2" style="max-width:100px">
+                    <i class="fa fa-eye"></i> @item.NumberOfViewers
+                </div>
+                @if (Session["user"] != null)
+                {
+
+                    <div class="col-lg-2" style="max-width:100px">
+
+
+                        <i class="fa fa-thumbs-down fs-2"></i>@item.NumberOfDislikes
+                    </div>
+                    <div class="col-lg-2" style="max-width:100px">
+
+                        <i class="fa fa-thumbs-up fs-2"></i> @item.NumberOfLikes
+
+
+
+                    </div>
+                    <div class="col-lg-2" style="max-width:100px">
+                        @if(item.IfAproveed == false) {
+                        <p>Refused</p>
+                        }
+                        else
+                        {
+                            <p>Approved</p>
+                        }
+
+
+
+
+                    </div>
+                    
+
+
+
+
+                }
+
+            </div>
+            
+
+        </div>
+    }
+</div>
+
+
+

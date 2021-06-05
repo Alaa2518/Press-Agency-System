@@ -120,6 +120,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.core.2.4.1\lib\net452\xunit.core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -255,6 +261,7 @@
     <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\ViewModels\EditProfile.cs" />
+    <Compile Include="Models\ViewModels\NewPostsView.cs" />
     <Compile Include="Models\ViewModels\PersonRoleViewModel.cs" />
     <Compile Include="Models\ViewModels\PostesImagesView.cs" />
     <Compile Include="Models\ViewModels\SavedPostes.cs" />
@@ -371,6 +378,12 @@
     <Content Include="Views\Wall\SavedPostes.cshtml" />
     <Content Include="Views\Wall\Edit.cshtml" />
     <Content Include="Views\Wall\Answers.cshtml" />
+    <Content Include="Views\Shared\_FacotryLayout.cshtml" />
+    <Content Include="Views\Factory\ViewProfile.cshtml" />
+    <Content Include="Views\Factory\Edit.cshtml" />
+    <Content Include="Views\Factory\MyPostes.cshtml" />
+    <Content Include="Views\Factory\CreatePostes.cshtml" />
+    <Content Include="Views\Factory\ReceivedQuestions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

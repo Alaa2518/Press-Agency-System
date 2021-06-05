@@ -279,3 +279,7 @@ E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebA
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.numberOfViews.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.Question.resources
 E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\obj\Debug\WebApplication3.Migrations.Question1.resources
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\xunit.abstractions.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\xunit.core.dll
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\xunit.abstractions.xml
+E:\uinvirsty\4_fourth year\second tearm\IA\Press-Agency-System\Press Agency\WebApplication3\bin\xunit.core.xml

@@ -375,6 +375,7 @@ namespace WebApplication3.Controllers
 
                     Questions questions = new Questions();
                     questions.Answer_Id = userId;
+                    questions.IsAnswer = false;
                     questions.Editor_Id = art.EditorId;
                     questions.Qustion = ques;
                     db.questions.Add(questions);
