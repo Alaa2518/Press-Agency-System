@@ -177,7 +177,7 @@ namespace WebApplication3.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Answer(int id, String answer)
         {
             if (answer != "")
@@ -185,22 +185,24 @@ namespace WebApplication3.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var Ques = db.questions.Single(x => x.ID == id);
+                    Questions questions = db.questions.Single(x => x.ID == id);
                     int userId = int.Parse(((Person)Session["user"]).Id.ToString());
+                    if (questions!= null) {
+                        questions.IsAnswer = true;
+                        questions.Editor_Id = userId;
+                        questions.Answer = answer;
+                        db.Entry(questions).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return Json(new { result = 1 }, JsonRequestBehavior.AllowGet);
 
-                    Questions questions = new Questions();
-                    questions.Answer_Id = Ques.Answer_Id;
-                    questions.IsAnswer = true;
-                    questions.Editor_Id = userId;
-                    questions.Qustion = Ques.Qustion;
-                    questions.Answer = answer;
-                    db.Entry(questions).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return Json(new { result = 1 });
+                    }
+                    
+                    
+                    
                 }
 
             }
-            return Json(new { result = 0 });
+            return Json(new { result = 0 }, JsonRequestBehavior.AllowGet);
         }
     }
 }

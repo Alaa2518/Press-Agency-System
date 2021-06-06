@@ -52,7 +52,7 @@
         answer = function (id) {
             Qdata = $("#Ans").val();
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: "/Factory/Answer/" + id,
                 data: { ques: Qdata },
                 success: function (resoponse) {
