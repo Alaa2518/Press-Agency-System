@@ -384,6 +384,9 @@
     <Content Include="Views\Factory\MyPostes.cshtml" />
     <Content Include="Views\Factory\CreatePostes.cshtml" />
     <Content Include="Views\Factory\ReceivedQuestions.cshtml" />
+    <Content Include="Views\Shared\_DashboardLayout.cshtml" />
+    <Content Include="Views\Dashboard\ViewProfile.cshtml" />
+    <Content Include="Views\Dashboard\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
