@@ -85,6 +85,12 @@ namespace WebApplication3.Controllers
             return View(editProfile);
         }
 
+        public ActionResult UsersPage()
+        {
+            IEnumerable<Person> person = db.People.ToList();
+            return View(person);
+        }
+
 
     }
 }

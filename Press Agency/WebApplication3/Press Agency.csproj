@@ -387,6 +387,7 @@
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\ViewProfile.cshtml" />
     <Content Include="Views\Dashboard\Edit.cshtml" />
+    <Content Include="Views\Dashboard\UsersPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
