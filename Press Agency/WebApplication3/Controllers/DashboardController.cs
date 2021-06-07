@@ -90,6 +90,20 @@ namespace WebApplication3.Controllers
             IEnumerable<Person> person = db.People.ToList();
             return View(person);
         }
+       
+
+        [HttpPost, ActionName("DeleteUsers")]
+        public ActionResult DeleteUsers(int id)
+        {
+            var person = db.People.Find(id);
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            db.People.Remove(person);
+            db.SaveChanges();
+            return RedirectToAction("UsersPage");
+        }
 
         public ActionResult PostsPage()
         {
