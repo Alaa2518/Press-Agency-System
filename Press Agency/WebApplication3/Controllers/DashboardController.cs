@@ -92,7 +92,7 @@ namespace WebApplication3.Controllers
         }
        
 
-        [HttpPost, ActionName("DeleteUsers")]
+        
         public ActionResult DeleteUsers(int id)
         {
             var person = db.People.Find(id);
